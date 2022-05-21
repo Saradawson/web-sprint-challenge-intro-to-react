@@ -8,11 +8,14 @@ const App = () => {
 
 useEffect(() => {
   const charactersData = [];
+  
   axios.get(`https://swapi.dev/api/people`)
     .then(res => {
-      res.data.results.map(character => {
-        setCharacters(character);
+      res.data.results.forEach((character, name) => {
+        name=`${character.name}`
+        charactersData.push(character);
       });
+      setCharacters(charactersData);
     })
     .catch(err => {
       console.error(err);
@@ -28,7 +31,7 @@ useEffect(() => {
     return (
       <div className="App">
         <h1 className="Header">Characters</h1>
-        { characters && <Characters characters={characters}/>}
+        {<Characters characters={characters} key={characters}/>}
       </div>
   );
 }
