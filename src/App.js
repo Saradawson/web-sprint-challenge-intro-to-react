@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Characters from './components/Character';
+import Character from './components/Character';
+
 
 const App = () => {
   const [characters, setCharacters] = useState();
-  console.log('characters', characters);
+  // console.log('characters', characters);
 
 useEffect(() => {
-  const charactersData = [];
   
-  axios.get(`https://swapi.dev/api/people`)
+  axios.get(`https://swapi.dev/api/people/`)
     .then(res => {
-      res.data.results.forEach((character, name) => {
-        name=`${character.name}`
-        charactersData.push(character);
-      });
-      setCharacters(charactersData);
+      // console.log(res.data);
+      setCharacters(res.data);
     })
     .catch(err => {
       console.error(err);
@@ -30,8 +27,14 @@ useEffect(() => {
   // sync up with, if any.
     return (
       <div className="App">
-        <h1 className="Header">Characters</h1>
-        {<Characters characters={characters} key={characters}/>}
+        <h1 className="Header">PICK YOUR CHARACTER</h1>
+        {
+          characters &&
+          characters.map(char => {
+            console.log(char);
+            return <Character character={char} key={char.name}/>
+          })
+        }
       </div>
   );
 }
