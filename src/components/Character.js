@@ -2,27 +2,30 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledCharacterCard = styled.div`
-    width: 95%;
+    width: 50%;
     background: rgba(255,255,255,0.5);
     display: flex;
     flex-direction: column;
     margin: 1%;
     border: 4mm ridge rgba(211, 220, 50, .6);
+    align-items: center;
+    justify-items: center;
+    
 `
 const StyledName = styled.h3`
     margin: 1%;
     background: rgba(255, 255, 255, 0.5);
-    padding:1%
+    padding: 2% 8%;
+    border: 50% transparent black;
 `
 const StyledInfoCard = styled.div`
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column;      
 `
 
 const StyledInfo = styled.h4`
     margin: 1%;
-    text-align: left;
+
 `
 
 const Character = ({ character }) => {
